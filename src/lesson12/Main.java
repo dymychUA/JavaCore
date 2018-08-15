@@ -22,36 +22,36 @@ public class Main {
         BankSystem bankSystem = new UkrainianBankSystem();
 
         bankSystem.withdraw(user1, 1000);
-        /*bankSystem.withdraw(user2, 250);
+        bankSystem.withdraw(user2, 250);
         bankSystem.withdraw(user3, 350);
         bankSystem.withdraw(user4, 450);
         bankSystem.withdraw(user5, 550);
-        bankSystem.withdraw(user6, 650);*/
+        bankSystem.withdraw(user6, 650);
 
-        //bankSystem.fund(user1, 1000);
-        /*bankSystem.fund(user2, 2000);
+        bankSystem.fund(user1, 1000);
+        bankSystem.fund(user2, 2000);
         bankSystem.fund(user3, 3000);
         bankSystem.fund(user4, 4000);
         bankSystem.fund(user5, 5000);
-        bankSystem.fund(user6, 6000);*/
+        bankSystem.fund(user6, 6000);
 
-        //bankSystem.transferMoney(user1, user2, 100);
-        //bankSystem.transferMoney(user3, user4, 2500);
-        //bankSystem.transferMoney(user5, user6, 3500);
+        bankSystem.transferMoney(user1, user2, 100);
+        bankSystem.transferMoney(user3, user4, 2500);
+        bankSystem.transferMoney(user5, user6, 3500);
 
-        //bankSystem.paySalary(user1);
-        /*bankSystem.paySalary(user2);
+        bankSystem.paySalary(user1);
+        bankSystem.paySalary(user2);
         bankSystem.paySalary(user3);
         bankSystem.paySalary(user4);
         bankSystem.paySalary(user5);
-        bankSystem.paySalary(user6);*/
+        bankSystem.paySalary(user6);
 
         System.out.println(user1.toString());
-        /*System.out.println(user2.toString());
+        System.out.println(user2.toString());
         System.out.println(user3.toString());
         System.out.println(user4.toString());
         System.out.println(user5.toString());
-        System.out.println(user6.toString());*/
+        System.out.println(user6.toString());
 
     }
 }
