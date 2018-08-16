@@ -1,7 +1,11 @@
 package lesson09.HomeWork;
 
 public class UserRepository {
-    private User[] users;
+    private User[] users = new User[10];
+
+    public UserRepository() {
+        this.users = users;
+    }
 
     public UserRepository(User[] users) {
         this.users = users;

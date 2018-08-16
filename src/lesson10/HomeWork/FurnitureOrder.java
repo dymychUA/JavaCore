@@ -20,7 +20,7 @@ public class FurnitureOrder extends Order {
 
     @Override
     public void validateOrder() {
-        if (getDateConfirmed() != null)
+        if (getCustomerOwned() == null || getDateConfirmed() != null)
             return;
 
         if (validateCity(getShipFromCity()) && getBasePrice() >= 500 && getCustomerOwned().getName() != "Тест") {
@@ -30,7 +30,7 @@ public class FurnitureOrder extends Order {
 
     @Override
     public void calculatePrice() {
-        if (getTotalPrice() != 0)
+        if (getCustomerOwned() == null || getTotalPrice() != 0)
             return;
 
         setTotalPrice(getBasePrice() + getBasePrice() * (getBasePrice() < 5000 ? 0.05 : 0.02));

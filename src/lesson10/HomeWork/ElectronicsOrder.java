@@ -20,7 +20,7 @@ public class ElectronicsOrder extends Order {
 
     @Override
     public void validateOrder() {
-        if (getDateConfirmed() != null)
+        if (getCustomerOwned() == null || getDateConfirmed() != null)
             return;
 
         if (validateCity(getShipFromCity()) && validateCity(getShipToCity()) && getBasePrice() > 100 && getCustomerOwned().getGender() == "Женский") {
@@ -30,7 +30,7 @@ public class ElectronicsOrder extends Order {
 
     @Override
     public void calculatePrice() {
-        if (getTotalPrice() != 0)
+        if (getCustomerOwned() == null || getTotalPrice() != 0)
             return;
 
         String shipToCity = getShipToCity();

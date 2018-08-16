@@ -1,6 +1,7 @@
 package lesson10.HomeWork;
 
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class Demo {
     public static void main(String[] args) {
@@ -19,10 +20,49 @@ public class Demo {
         FurnitureOrder fOrder2 = new FurnitureOrder("Shlak 2", new Date(), "Львов", "Львов", 200, customer6, "GP830");
 
         Order[] orders = {eOrder1, eOrder2, fOrder1, fOrder2};
+
+        //*************************** TESTS ******************************
+        int i = 1;
         for (Order order : orders) {
+            System.out.println();
+            System.out.println("    -Order #" + i + " (" + getOrderType(order) +  "):");
+            System.out.println(order);
             order.calculatePrice();
+            System.out.println("After price calculating");
+            System.out.println(order);
             order.validateOrder();
+            System.out.println("After validation");
+            System.out.println(order);
             order.confirmShipping();
+            System.out.println("After shipping confirming");
+            System.out.println(order);
+            i++;
         }
+
+        //re-validate order
+        //pause (Thread.sleep(3000))
+        System.out.println();
+        System.out.println(new Date());
+        eOrder1.validateOrder();
+        System.out.println(eOrder1);
+
+        //if customer is null
+        System.out.println();
+        System.out.println("user = null");
+        ElectronicsOrder eOrder = new ElectronicsOrder("HP Probook H1", new Date(), "Киев", "Днепр", 15000, null, 12);
+        System.out.println(eOrder);
+        eOrder.calculatePrice();
+        eOrder.validateOrder();
+        eOrder.confirmShipping();
+        System.out.println(eOrder);
+
+    }
+
+    private static String getOrderType(Order order) {
+        if (order instanceof ElectronicsOrder)
+            return "Electronics";
+        if (order instanceof FurnitureOrder)
+            return "Furniture";
+        return "unknown type";
     }
 }
