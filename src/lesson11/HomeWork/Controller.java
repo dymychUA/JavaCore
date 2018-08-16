@@ -22,6 +22,7 @@ public class Controller {
             Room[] apiRooms = requestRoomsAPI(api, price, persons, city, hotel);
             for (Room room : apiRooms) {
                 rooms[index] = room;
+                index++;
             }
         }
 
@@ -33,6 +34,8 @@ public class Controller {
     }
 
     private boolean roomsAreEqual(Room room1, Room room2) {
+        if(room1 == null || room2 == null)
+            return false;
         if (room1.getPrice() == room2.getPrice() && room1.getPersons() == room2.getPersons() &&
             room1.getHotelName().equals(room2.getHotelName()) && room1.getCityName().equals(room2.getCityName()) &&
             room1.getId() != room2.getId() && room1.getDateAvailableFrom() != room2.getDateAvailableFrom())
@@ -42,6 +45,9 @@ public class Controller {
     }
 
     public Room[] check(API api1, API api2) {
+        if (api1 == null || api2 == null)
+            return null;
+
         int size = 0;
         Room[] roomsAPI1 = api1.getAll();
         Room[] roomsAPI2 = api2.getAll();
