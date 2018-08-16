@@ -12,8 +12,8 @@ public class BookingComAPI implements API {
     public Room[] findRooms(int price, int persons, String city, String hotel) {
         int size = 0;
         for (Room room : rooms) {
-            if (persons == room.getPersons() && city == room.getCityName() &&
-                hotel == room.getHotelName() && Math.min(0, price -100) <= price && price <= (price + 100))
+            if (persons == room.getPersons() && city.equals(room.getCityName()) &&
+                hotel.equals(room.getHotelName()) && Math.min(0, price -100) <= price && price <= (price + 100))
                 size++;
         }
 
@@ -21,8 +21,8 @@ public class BookingComAPI implements API {
 
         int index = 0;
         for (Room room : rooms) {
-            if (persons == room.getPersons() && city == room.getCityName() &&
-                    hotel == room.getHotelName() &&
+            if (persons == room.getPersons() && city.equals(room.getCityName()) &&
+                    hotel.equals(room.getHotelName()) &&
                     Math.max(0, price -100) <= room.getPrice() && room.getPrice() <= (price + 100)) {
                 compatibleRooms[index] = room;
                 index++;

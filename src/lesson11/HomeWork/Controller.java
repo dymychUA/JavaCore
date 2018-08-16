@@ -34,7 +34,7 @@ public class Controller {
 
     private boolean roomsAreEqual(Room room1, Room room2) {
         if (room1.getPrice() == room2.getPrice() && room1.getPersons() == room2.getPersons() &&
-            room1.getHotelName() == room2.getHotelName() && room1.getCityName() == room2.getCityName() &&
+            room1.getHotelName().equals(room2.getHotelName()) && room1.getCityName().equals(room2.getCityName()) &&
             room1.getId() != room2.getId() && room1.getDateAvailableFrom() != room2.getDateAvailableFrom())
             return true;
 

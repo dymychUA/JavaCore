@@ -19,10 +19,8 @@ public class UkrainianBankSystem implements BankSystem {
 
     @Override
     public void transferMoney(User fromUser, User toUser, int amount) {
-        if (!checkWithdraw(fromUser, amount))
-            return;
 
-        if (!checkFunding(toUser, amount))
+        if (fromUser.getBank().getCurrency() != toUser.getBank().getCurrency() || !checkWithdraw(fromUser, amount) || !checkFunding(toUser, amount))
             return;
 
         withdrawFromUserBalance(fromUser, amount);
@@ -31,15 +29,13 @@ public class UkrainianBankSystem implements BankSystem {
 
     @Override
     public void paySalary(User user) {
-        user.setBalance(user.getBalance() + user.getSalary() - user.getBank().getCommission(user.getSalary()));
+        if (!checkFunding(user, user.getSalary()))
+            return;
+        user.setBalance(user.getBalance() + user.getSalary());
     }
 
     private boolean checkFunding(User user, int amount) {
-        return checkFundingLimits(user, amount, user.getBank().getLimitOfFunding());
-    }
-
-    private boolean checkFundingLimits(User user, int amount, double limit) {
-        if (amount > limit) {
+        if (amount > user.getBank().getLimitOfFunding()) {
             printFundingErrorMsg(amount, user);
             return false;
         }
@@ -70,4 +66,8 @@ public class UkrainianBankSystem implements BankSystem {
     private void withdrawFromUserBalance(User user, int amount) {
         user.setBalance(user.getBalance() - amount - amount * user.getBank().getCommission(amount));
     }
+
+    /*private boolean checkCurrencyOnTransfer(User user1, User user2) {
+        return user1.getBank().getCurrency() == user2.getBank().getCurrency();
+    }*/
 }
