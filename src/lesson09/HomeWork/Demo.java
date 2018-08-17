@@ -27,7 +27,7 @@ public class Demo {
         System.out.println(Arrays.toString(userRepository.getUsers()));
 
         //test save
-        User user = new User(1001, "Ann", "1w21212");
+        User user = new User(1001, "Ann1", "1w21212");
         userRepository.save(user);
         System.out.println(Arrays.toString(userRepository.getUsers()));
 
@@ -36,7 +36,7 @@ public class Demo {
 
         int n = 15;
         while (n > 0) {
-            User user1 = new User(n, "Ann", "1w21212");
+            User user1 = new User(n, "Ann2", "1w21212");
             System.out.println(userRepository.save(user1));
             n--;
         }
@@ -45,15 +45,38 @@ public class Demo {
         userRepository.save(null);
 
         //test update
-        user = new User(1001, "Ann", "eretertert");
+        user = new User(1001, "Ann3", "eretertert");
         userRepository.update(user);
         System.out.println(Arrays.toString(userRepository.getUsers()));
 
-        user = new User(9999, "Ann", "eretertert");
+        user = new User(9999, "Ann4", "eretertert");
         System.out.println(userRepository.update(user));
         System.out.println(Arrays.toString(userRepository.getUsers()));
 
         System.out.println(userRepository.update(null));
+        System.out.println(Arrays.toString(userRepository.getUsers()));
+
+        //test find by id
+        System.out.println("find by id 1001");
+        System.out.println(userRepository.findById(1001));
+        System.out.println("find by id (not exists)");
+        System.out.println(userRepository.findById(0));
+
+        //test print all users names and ids
+        userRepository = new UserRepository(new User[]{user_1, user_2, user_3});
+        System.out.println("all users names");
+        System.out.println(Arrays.toString(userRepository.getUserNames()));
+        System.out.println(Arrays.toString(userRepository.getUserIds()));
+
+        //test getUserNameById, getUserByName, getUserById
+        System.out.println("   1 - getUserNameById, 2 - getUserByName, 3 - getUserById");
+        System.out.println("1. id=3; " + userRepository.getUserNameById(3));
+        System.out.println("2. id=2; " + userRepository.getUserById(2));
+        System.out.println("3. name=Zen; " + userRepository.getUserByName("Zen"));
+
+        //test deleting user
+        System.out.println("delete user with id=2");
+        userRepository.delete(2);
         System.out.println(Arrays.toString(userRepository.getUsers()));
 
     }
