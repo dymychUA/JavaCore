@@ -43,12 +43,8 @@ public class UkrainianBankSystem implements BankSystem {
     }
 
     private boolean checkWithdraw(User user, int amount) {
-        return checkWithdrawLimits(user, amount, user.getBank().getLimitOfWithdrawal()) &&
-                checkWithdrawLimits(user, amount, user.getBalance());
-    }
-
-    private boolean checkWithdrawLimits(User user, int amount, double limit) {
-        if (amount + amount * user.getBank().getCommission(amount) > limit) {
+        double amountWithCovission = amount + amount * user.getBank().getCommission(amount);
+        if (amountWithCovission > user.getBank().getLimitOfWithdrawal() || amountWithCovission > user.getBalance()) {
             printWithdrawErrorMsg(amount, user);
             return false;
         }
@@ -66,8 +62,4 @@ public class UkrainianBankSystem implements BankSystem {
     private void withdrawFromUserBalance(User user, int amount) {
         user.setBalance(user.getBalance() - amount - amount * user.getBank().getCommission(amount));
     }
-
-    /*private boolean checkCurrencyOnTransfer(User user1, User user2) {
-        return user1.getBank().getCurrency() == user2.getBank().getCurrency();
-    }*/
 }
