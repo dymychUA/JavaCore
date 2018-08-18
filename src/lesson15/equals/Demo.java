@@ -13,8 +13,8 @@ public class Demo {
 
         System.out.println(file1.hashCode());
         System.out.println(file3.hashCode());
-
         System.out.println(file1.equals(file3));
+
         System.out.println(file1 == file3);
 
         System.out.println(file1 == someFile);
