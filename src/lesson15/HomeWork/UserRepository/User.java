@@ -3,6 +3,7 @@ package lesson15.HomeWork.UserRepository;
 import java.util.Objects;
 
 public class User {
+
     private long id;
     private String name;
     private String sessionId;
